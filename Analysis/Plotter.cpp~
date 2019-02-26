@@ -1,0 +1,7 @@
+#include <iostream>
+
+void Plotter()
+{
+  std::vector<string> filePaths = {"VRCQ26H_065_TID_.txt","VTCQ24H_005_TID_.txt","VTCQ24H_034_TID_.txt","VTCQ24H_048_TID_.txt","VTCQ24H_057_TID_.txt","VTCQ24H_061_TID_.txt","VTCQ24H_063_TID_.txt","VTCQ24H_065_TID_.txt","VTCQ24H_067_TID_.txt","VTCQ24H_069_TID_.txt","VTCQ24H_073_TID_.txt","VTCQ24H_096_TID_.txt"};
+
+}

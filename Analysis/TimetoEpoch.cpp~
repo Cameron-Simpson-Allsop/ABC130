@@ -1,0 +1,6 @@
+void TimetoEpoch(std::string time)
+{
+  std::string hours = time.substr(time.begin(),2);
+  std::cout<<hours<<std::endl;
+
+}

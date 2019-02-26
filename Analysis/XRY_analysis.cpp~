@@ -1,0 +1,58 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+struct Data
+{
+  std::vector<double> TID; //Dose rate x time
+  std::vector<double> IDDD; //Digital current
+};
+
+Data ProcessFile(std::string filePath)
+{
+  Data data;
+  std::string errorMsg{"Error opening file '"+filePath+"'..."};
+  std::string successMsg{"File '"+filePath+"' succesfully processed..."};
+  std::string fileLine{""};
+  std::size_t time_marker;
+  std::size_t VDDD_IDDD_marker;
+  ifstream inFile;
+  inFile.open(filePath);
+  if(!inFile.good())
+    {
+      std::cout<<errorMsg<<std::endl;
+      return data;
+    }
+  while(!inFile.eof())
+    {
+      getline(inFile,fileLine);
+      TID_marker = fileLine.find("===");
+      VDDD_IDDD_marker = fileLine.find("VDDD");
+      if(time_marker != std::string::npos)
+	{
+	  std::string tmp1,tmp2,tmp3;
+	  double TID;
+	  stringstream ss(fileLine);
+	  ss >> tmp1 >> tmp2 >> tmp3 >> TID;
+	  data.TID.push_back(TID);
+	}
+      else if(VDDD_IDDD_marker != std::string::npos)
+	{
+	  std::string tmp1,tmp2,tmp3,tmp4;
+	  double VDDD,IDDD;
+	  stringstream ss(fileLine);
+	  ss >> tmp1 >> tmp2 >> VDDD >> tmp3 >> tmp4 >> IDDD;
+	  data.IDDD.push_back(IDDD);
+	}
+    }
+  std::cout<<"\n\n Beginning file '"+filePath+"'..."<<"\n\n"<<std::endl;
+  for(int i{0}; i<data.Total_TID.size(); ++i)
+    {
+      std::cout<<"=============================="<<std::endl;
+      std::cout<<data.TID[i]<<"\t"<<data.IDDD<<std::endl;
+      std::cout<<"=============================="<<std::endl;
+    }
+  std::cout<<successMsg<<std::endl;
+  return data;
+}
